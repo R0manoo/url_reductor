@@ -1,0 +1,31 @@
+{
+    "name": "reducteur",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server-dev": "cross-env NODE_ENV=development nodemon back.mjs",
+        "server-prod": "cross-env NODE_ENV=production node back.mjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/R0manoo/url_reductor.git"
+    },
+    "author": "Romano",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/R0manoo/url_reductor/issues"
+    },
+    "homepage": "https://github.com/R0manoo/url_reductor#readme",
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+        "cookie-parser": "^1.4.6",
+        "cross-env": "^7.0.3",
+        "express": "^4.18.2",
+        "http-errors": "^2.0.0",
+        "morgan": "^1.10.0"
+    }
+}

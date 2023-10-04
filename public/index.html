@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form</title>
+        <script defer src="/scripts/front.js"></script>
+        <link
+            href="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAS2qXAHKQ0QA8V4MAP1mAADtZkgADCA8Ad5jXAI6n8QAIDQwAJTRSABIiOAAIDg8AirH0AAkODwCJsvcAUmJuAG2LzABNZZIANlaBAISQnABZfrgAmrnxAD1UhABMaqEAM1OcAImWnACCrO8APEZbAAwbSAA1Rm0AorK5AFhwqgAZIzMAR01MAFt4sAAbKTwAYnunAFBjlgBiebMAl7n7AD5QggCIpOEALkBlAGB8vAA0RVkA2ubwADZEVgCdrbQAXYPIAIat8wAOHzoA3en5AH2Z3AAWIjoABxAXAH2f3AB7n+UAobDYAEZhowCAn+UAW3m0AH6j6AA4UoAAWni6AD5RdACcsPMAhKHiABEdIwCDqfEAJi89AHKZ3QBPca8ABw4JAGOHwwB4muAAIThYAEJflQAWHzsALlB7AKW1uwAXJzgANVOEAFp9uACDp+MAmLj6ABAWKgBmfa8AOlqHACMuRACEq+8AZYC4ADxcjQCHqfIAiK7vAD5ekwB3muEApLG5AFd0pwAsNVAAjbT4AH2j4QBOYJAAXHewAKm5vwCVsfgAbZTQAICm6gCaufUAg6PqAIaUmgAZL0gAAAYFAL/M7gDb5uoAcpbWAISr8ACIre0AanBvAF+GywA4SV8A4ezzAI6hpgAJDw4Ai7H5AEJilwBqhcgAmJ6dAI+z9gBoj9QAGis9AH2j6wB0lL8Am7v8AC5BbABhcXwABAoJAIaq9wCIr/QAHDZeAHuY3QA2T2kAS1yGAKS0uwB5neMAeJ7mAI+y9AAxU34Aqbi+AERjpABPZJUAws7SAGyN2ACCpOYASGatAEdvpACElKUAPFiEAD9ZfgBgfcQAO1eTAGR+vgBAWI0AcZveAHmbzACHrvIACQ4NAGaFygBGXJAAirD4AI2v9QCDm9UAHjlxAGqSzQCEpN4AWny5AG2R0wArO24AXnu/ACtEZQBLbKUAnrv1AC5CaACIpu0AAwkIAIeq8AAgK1oAoq+3AC1KdwB0m98AeYmPAHGJoQA9Wp0Aiaz2AOLx8wB3neUAUne0AFdzugA2UXoAX2VkABs3hwAqPWMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABqvTEFLKsgogokRI0tAAAAG5F3pypnWxcLJIcccAAAADnDgZkWGCOouk4UDrgAAACcij6FbLUnlh42UaaIAAAAf3QyKBEHVKGxHWMMuAAAAMeJqVUCsoxAQjUpIXsAAAAiucGqxTualQhpJm8JAAAAdl6AXX7AoCOft2aCSQAAAC4ZDXyYr2K2hjxBBjcAAABxyGRkbU0lVjNXjllGAAAAOjh1D0tDrATJTIsrLwAAAMI0kqVFaz0Ss8adA3gAAACXcq5ag2BzU1xSP7wQAAAAGr6/kJFHvUhfT5MTeQAAADAfaKRlo7DEtH1YnpQAAAC7YY9QhGWtShWbAXpuAMABAADAAQAAwAEAAMABAADAAQAAwAEAAMABAADAAQAAwAEAAMABAADAAQAAwAEAAMABAADAAQAAwAEAAMABAAA="
+            rel="icon"
+            type="image/x-icon"
+        />
+        <link rel="stylesheet"
+        href=https://cdn.jsdelivr.net/npm/bulma-tooltip@3.0.2/dist/css/bulma-tooltip.min.css
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+        />
+        <script
+            defer
+            src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+        ></script>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <dir></dir>
+        <div class="box column is-half is-offset-one-quarter">
+            <h1 class="title has-text-centered">URL SHORTENER</h1>
+            <form method="POST" action="/submit" id="submit-link">
+                <div class="column">
+                    <div class="field">
+                        <div class="columns">
+                            <div class="column is-four-fifths">
+                                <label class="label" for="url"
+                                    >Enter an url to shorten</label
+                                >
+                                <p class="control has-icons-left">
+                                    <input
+                                        class="input"
+                                        name="url"
+                                        id="url"
+                                        type="url"
+                                        placeholder="https://exemple.com"
+                                    />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-link"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="column">
+                                <label class="label" for="url"
+                                    >Url Length</label
+                                >
+                                <input
+                                    class="input"
+                                    type="number"
+                                    value="4"
+                                    id="length"
+                                    name="length"
+                                    min="2"
+                                    max="30"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="button is-primary"
+                        id="submit-btn"
+                    >
+                        Envoyer
+                    </button>
+                </div>
+            </form>
+            <div class="field has-addons">
+                <div class="control is-expanded">
+                    <input
+                        class="input"
+                        type="text"
+                        id="copy-text"
+                        placeholder="New link"
+                        readonly
+                    />
+                </div>
+                <div class="control">
+                    <button class="button is-info" id="copy-button">
+                        Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="box column">
+            <div class="column">
+                <h1 class="title has-text-centered">List of stored URLs</h1>
+                <div class="column"></div>
+                <div class="columns">
+                    <div class="column is-three-quarters">
+                        <h2 class="h2 has-text-centered">Fast Access Panel</h2>
+                    </div>
+                    <div class="column">
+                        <h2 class="h2">Destination</h2>
+                    </div>
+                </div>
+                <div class="column">
+                    <ul class="ul" id="output"></ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
