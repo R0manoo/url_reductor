@@ -1,14 +1,51 @@
 "use strict;";
 
+localStorage.clear()
+
 const $form = document.querySelector("#submit-link");
 const $output = document.querySelector("#output");
 const $input = document.querySelector("#url");
 const $submitBtn = document.querySelector("#submit-btn");
-const $showUrlBtn = document.querySelector("#show-links");
+const $copyButton = document.querySelector("#copy-button");
+const $copyText = document.querySelector("#copy-text");
+
+document.addEventListener("DOMContentLoaded", function () {
+    $copyButton.addEventListener("click", function () {
+        // Select the text in the input field
+        $copyText.select();
+        try {
+            // Copy the selected text to the clipboard
+            document.execCommand("copy");
+            // alert("Text copied to clipboard!");
+        } catch (err) {
+            console.error("Unable to copy text: ", err);
+        }
+    });
+});
 
 function formDataToJSON(formElt) {
     const formData = new FormData(formElt);
     return Object.fromEntries(formData.entries());
+}
+function showStoredUrl() {
+    storedUrl = JSON.parse(localStorage.getItem("storedUrl"));
+    let html = "";
+    storedUrl.forEach((element) => {
+        const a_class = "button is-fullwidth is-link is-small";
+        const div_class = "column is-half";
+        const href = `${window.location.href}${element.shortUrl}`;
+        html+=`<div class="container is-primary">`
+        html += `<div class="columns">`;
+        html += `<div class="column is-three-quarters">`
+        html += `<a class="${a_class}" href="${href}">${window.location.href}${element.shortUrl}</a>`;
+        html += `</div>`
+        html += `<div class="column">`
+        html += `<a class="${a_class}">${element.url}</a>`;
+        html += `</div>`
+        html += `</div>`;
+        html += `</div>`;   
+    });
+    $output.innerHTML = html;
 }
 
 function isValidUrl(url) {
@@ -20,22 +57,26 @@ function isValidUrl(url) {
     }
 }
 
-//TODO AJOUTER UN TRUC QUAND L'USER ENTRE UN URL A LA CON
+
 //TODO AUSSI AJOUTER UN TRUC POUR UNE URL CUSTOM
 //* CA DANS LE BACK
 //* AJOUTER UN TRUC QUAND URL CHOISI DEJA UTILISE
 
-//*Quand la page a fini de charger on check les cookies
-// document.cookie="url=url:'http://toto.org',shortUrl:'';expires=Thu, 30 Dec 2023 00:00:00 UTC; path=/;SameSite=None;Secure"
-window.addEventListener("load", async(event) => {
-    console.log(document.cookie);
-    await fetch("/set-cookie",{
-        method:"post",
-        body:document.cookie
-    })
+window.addEventListener("load", async (event) => {
+    showStoredUrl();
+    let storedUrl = localStorage.getItem("storedUrl")
+        ? localStorage.getItem("storedUrl")
+        : JSON.stringify([]);
+    await fetch("/local-storage", {
+        method: "post",
+        body: storedUrl,
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 });
 
-
+//TODO AJOUTER UN TRUC QUAND L'USER ENTRE UN URL A LA CON
 $form.addEventListener("submit", async (evt) => {
     evt.preventDefault(); //on empeche le formulaire de se diriger vers /submit
     try {
@@ -47,28 +88,23 @@ $form.addEventListener("submit", async (evt) => {
                     "Content-Type": "application/json",
                 },
             });
+            const updatedData = await fetch("/local-storage", {
+                method: "get",
+            });
+            const json = await updatedData.json();
+            localStorage.setItem("storedUrl", JSON.stringify(json));
+            const truc = JSON.parse(localStorage.getItem("storedUrl"));
+            length = truc.length;
+            latest_link = truc[length - 1].shortUrl;
+            console.log(latest_link);
+            console.log($copyText.value)
+            $copyText.value = `${window.location}${latest_link}`;
+            showStoredUrl();
+        }
+        else{
+            
         }
     } catch (error) {
         console.error(error);
     }
 });
-
-
-
-//! MEGA MOCHE CHANGER CA PLUS TARD
-$showUrlBtn.addEventListener("click", async () => {
-    const data = await fetch("/submit", {
-        method: "get",
-    });
-    const json = await data.json();
-    let html = "";
-    json.forEach((element) => {
-        console.log(element.url);
-        html += `<li>${window.location.href}${element.shortUrl}=>${element.url}</li>`;
-    });
-    $output.innerHTML = html;
-});
-
-
-
-
