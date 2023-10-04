@@ -3,7 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 //A changer lors du déploiment sur le web
 
-const host = "localhost";
+// const host = process.env.HOST || "localhost";
+// const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 const app = express();
 const environment = app.get("env");
@@ -18,23 +19,7 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const server = app.listen(port, host);
-
-//*##################################__TEST ZONE__##################################
-
 let storedUrl = [
-    // {
-    //     url: "https://op.gg",
-    //     shortUrl: "booba",
-    // },
-    // {
-    //     url: "https://www.refletsdacide.com/",
-    //     shortUrl: "tots",
-    // },
-    // {
-    //     url: "http://localhost:8000",
-    //     shortUrl: "mez",
-    // },
 ];
 
 function generateRandomRoute(len) {
@@ -103,8 +88,7 @@ app.get("/*", async (req, res) => {
     res.send(`NO MATCH FOR ${req.originalUrl}`);
 });
 
-//*#################################################################################
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(port,() => {
+    console.log(`Server is running on port ${port}`);
 });
