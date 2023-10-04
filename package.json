@@ -2,11 +2,11 @@
     "name": "reducteur",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "src/app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "server-dev": "cross-env NODE_ENV=development nodemon app.mjs",
-        "server-prod": "cross-env NODE_ENV=production node app.mjs"
+        "server-dev": "cross-env NODE_ENV=development nodemon src/app.mjs",
+        "server-prod": "cross-env NODE_ENV=production node src/app.mjs"
     },
     "repository": {
         "type": "git",

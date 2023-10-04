@@ -26,6 +26,7 @@ function formDataToJSON(formElt) {
     const formData = new FormData(formElt);
     return Object.fromEntries(formData.entries());
 }
+
 function showStoredUrl() {
     storedUrl = JSON.parse(localStorage.getItem("storedUrl"));
     let html = "";
