@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 //A changer lors du déploiment sur le web
 
 const host = "localhost";
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 const app = express();
 const environment = app.get("env");
 
