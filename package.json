@@ -5,12 +5,12 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "server-dev": "cross-env NODE_ENV=development nodemon back.mjs",
-        "server-prod": "cross-env NODE_ENV=production node back.mjs"
+        "server-dev": "cross-env NODE_ENV=development nodemon app.mjs",
+        "server-prod": "cross-env NODE_ENV=production node app.mjs"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/R0manoo/url_reductor.git"
+        "url": "https://github.com/R0manoo/url_reductor.git"
     },
     "author": "Romano",
     "license": "ISC",
